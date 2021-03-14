@@ -20,6 +20,7 @@ public class UsuarioController {
 	public ModelAndView cadastroUsuario() {
 		ModelAndView modelAndView =  new ModelAndView("cadastro/cadastro_usuario");
 		Iterable<Usuario> usuariosIt = usuarioRepository.findAll();
+		modelAndView.addObject("usuarioobj", new Usuario());
 		modelAndView.addObject("usuarios", usuariosIt);
 		return modelAndView;
 	}
