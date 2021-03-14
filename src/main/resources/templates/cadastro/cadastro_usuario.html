@@ -2,38 +2,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Cadastro Usuario</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+
 </head>
+
 <body>
 
-	<h1>Cadastro Usuário</h1>
+	<h1>Cadastro UsuÃ¡rio</h1>
 
-	<form action="/salvarusuario" id="formUsuario" method="post">
+	<form action="/salvarusuario" id="formUsuario" method="post"
+		th:object="${usuarioobj}" class="col s12">
 
-		<div>
-			<label>Nome usuário</label> 
-			<input name="nome">
-		</div>
-		<br/>
-		<div>
+		
+
+		<div class="row">
+			<div class="col s6">
+				<label>Nome usuÃ¡rio</label> 
+				<input name="nome" >
+			</div>	
+		
+		<div class="col s6">
 			<label>Login: </label> 
 			<input name="login">
 		</div>
-		<br/>
-		<div>
+		
+		<div class="col s6">
+
+		</div>	
+		
+		<div class="col s6">
 			<label>Senha: </label> 
 			<input type="password" name="senha">
-		</div>
+		</div>		
 		
-		<div> 
+		<div class="col s6">
 			<input type="submit" value="Salvar">
 		</div>
 
+	</div>
 
 	</form>
 
+	<table>
+		<tr th:each="usuario : ${usuarios}">
+			<td th:text="${usuario.id}"></td>
+			<td th:text="${usuario.nome}"></td>
+			<td th:text="${usuario.login}"></td>
+		</tr>
+
+	</table>
 
 
+
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/materialize.js"></script>
 </body>
 </html>
