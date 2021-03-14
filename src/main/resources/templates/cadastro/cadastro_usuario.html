@@ -25,37 +25,54 @@
 
 
 		<div class="row">
+
+			<div class="col s6">
+				<label>Cod. usuário</label> 
+				<input name="nome" th:field="*{id}">
+			</div>
+
+
 			<div class="col s6">
 				<label>Nome usuário</label> 
-				<input name="nome">
+				<input name="nome" th:field="*{nome}">
 			</div>
+
+
+		</div>
+
+		<div class="row">
 
 			<div class="col s6">
 				<label>Login: </label> 
-				<input name="login">
+				<input name="login" th:field="*{login}">
+			</div>
+
+			<div class="input-field col s6">
+				<label for="cargo" class="active">Cargo</label> <select
+					class="browser-default" th:field="*{cargo}">
+					<option value="" disabled selected>----[SELECIONE]-----</option>
+					<option value="ADM" th:text="ADMINISTRADOR" />
+					<option value="GERENTE" th:text="GERENTE" />
+					<option value="VENDAS" th:text="VENDEDOR" />
+					<option value="CAIXA" th:text="CAIXA" />
+				</select>
 			</div>
 		</div>
-		<div class="row">
-				<div class="input-field col s6">
-					<label for="cargo" class="active">Cargo</label> 
-					<select class="browser-default" th:field="*{cargo}">
-						<option value="" disabled selected>----[SELECIONE]-----</option>
-						<option value="ADM" th:text="ADMINISTRADOR" />
-						<option value="GERENTE" th:text="GERENTE" />
-						<option value="VENDAS" th:text="VENDEDOR" />
-						<option value="CAIXA" th:text="CAIXA" />
-					</select>
-				</div>
 
-				<div class="col s6">
-					<label>Senha: </label> <input type="password" name="senha">
-				</div>
-			</div>
+		<div class="row">
 			<div class="col s6">
+				<label>Senha: </label> 
+				<input type="password" name="senha"
+					th:field="*{senha}">
+			</div>
+
+		</div>
+
+		<div class="col s6">
 			<input type="submit" value="Salvar">
 		</div>
 
-	
+
 
 	</form>
 
@@ -65,13 +82,16 @@
 			<td th:text="${usuario.nome}"></td>
 			<td th:text="${usuario.login}"></td>
 			<td th:text="${usuario.cargo}"></td>
+			<td><a
+				th:href="@{/editarusuario/{idusuario}(idusuario=${usuario.id})}">Editar</a>
+			</td>
+
 		</tr>
 
 	</table>
 
 
 
-	<script type="text/javascript" src="js/materialize.min.js"></script>
-	<script type="text/javascript" src="js/materialize.js"></script>
+
 </body>
 </html>
