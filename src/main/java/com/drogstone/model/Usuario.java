@@ -19,6 +19,7 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String login;
 	private String senha;
+	private String cargo;
 
 	public Long getId() {
 		return id;
@@ -50,6 +51,14 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getCargo() {
+		return cargo;
+	}
+	
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 }
