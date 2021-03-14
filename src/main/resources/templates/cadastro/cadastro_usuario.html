@@ -22,33 +22,40 @@
 	<form action="/salvarusuario" id="formUsuario" method="post"
 		th:object="${usuarioobj}" class="col s12">
 
-		
+
 
 		<div class="row">
 			<div class="col s6">
 				<label>Nome usuário</label> 
-				<input name="nome" >
-			</div>	
-		
-		<div class="col s6">
-			<label>Login: </label> 
-			<input name="login">
-		</div>
-		
-		<div class="col s6">
+				<input name="nome">
+			</div>
 
-		</div>	
-		
-		<div class="col s6">
-			<label>Senha: </label> 
-			<input type="password" name="senha">
-		</div>		
-		
-		<div class="col s6">
+			<div class="col s6">
+				<label>Login: </label> 
+				<input name="login">
+			</div>
+		</div>
+		<div class="row">
+				<div class="input-field col s6">
+					<label for="cargo" class="active">Cargo</label> 
+					<select class="browser-default" th:field="*{cargo}">
+						<option value="" disabled selected>----[SELECIONE]-----</option>
+						<option value="ADM" th:text="ADMINISTRADOR" />
+						<option value="GERENTE" th:text="GERENTE" />
+						<option value="VENDAS" th:text="VENDEDOR" />
+						<option value="CAIXA" th:text="CAIXA" />
+					</select>
+				</div>
+
+				<div class="col s6">
+					<label>Senha: </label> <input type="password" name="senha">
+				</div>
+			</div>
+			<div class="col s6">
 			<input type="submit" value="Salvar">
 		</div>
 
-	</div>
+	
 
 	</form>
 
@@ -57,6 +64,7 @@
 			<td th:text="${usuario.id}"></td>
 			<td th:text="${usuario.nome}"></td>
 			<td th:text="${usuario.login}"></td>
+			<td th:text="${usuario.cargo}"></td>
 		</tr>
 
 	</table>
