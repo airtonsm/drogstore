@@ -1,7 +1,10 @@
 package com.drogstore.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,10 +48,14 @@ public class UsuarioController {
 		return modelAndView;
 	}
 	
-	//public ModelAndView editar(@PathVariable("idusuario") Long idpessoa) {
+	@GetMapping("/editarusuario/{idusuario}")
+	public ModelAndView editar(@PathVariable("idusuario") Long idusuario) {
+		 
+		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
+		Optional<Usuario> usuario = usuarioRepository.findById(idusuario);
+		modelAndView.addObject("usuarioobj", usuario.get()); //usuario.get injeta objetos para edição
 		
-		
-		
-	//}
+		return modelAndView;
+	}
 
 }
