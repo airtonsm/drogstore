@@ -7,15 +7,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
 @SpringBootApplication
-@EntityScan(basePackages = "com.drogstone.model")
+@EntityScan(basePackages = "com.drogstore.model")
 @ComponentScan(basePackages = {"com.*"})
 @EnableJpaRepositories(basePackages = {"com.drogstore.repository"})
 @EnableTransactionManagement
 public class DrugstoreApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(DrugstoreApplication.class, args);
 	}
 

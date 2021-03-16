@@ -20,7 +20,7 @@
 	<h1>Cadastro Usuário</h1>
 
 	<form action="/salvarusuario" id="formUsuario" method="post"
-		th:object="${usuarioobj}" class="col s12">
+		th:object="${usuarioobj}" class="col s12" onsubmit="return validar() ? true : false">
 
 
 
@@ -82,16 +82,25 @@
 			<td th:text="${usuario.nome}"></td>
 			<td th:text="${usuario.login}"></td>
 			<td th:text="${usuario.cargo}"></td>
-			<td><a
-				th:href="@{/editarusuario/{idusuario}(idusuario=${usuario.id})}">Editar</a>
-			</td>
+			<td><a th:href="@{/editarusuario/{idusuario}(idusuario=${usuario.id})}">Editar</a></td>
+			<td><a th:href="@{/removeusuario/{idusuario}(idusuario=${usuario.id})}">Excluir</a></td>
 
 		</tr>
 
 	</table>
 
 
+<script type="text/javascript">
+	
+	function validar(){
+		nome = document.getElementById('nome').value;
+		login = document.getElementById('login').value;
+		senha = document.getElementById('senha').value;
+		
+		
+	}
 
+</script>
 
 </body>
 </html>
