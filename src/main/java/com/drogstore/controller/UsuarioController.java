@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.drogstone.model.Usuario;
+
+import com.drogstore.model.Usuario;
 import com.drogstore.repository.UsuarioRepository;
 
 @Controller
@@ -18,7 +19,8 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
+
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastro_usuario")
 	public ModelAndView cadastroUsuario() {
 		ModelAndView modelAndView =  new ModelAndView("cadastro/cadastro_usuario");
@@ -53,9 +55,23 @@ public class UsuarioController {
 		 
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
 		Optional<Usuario> usuario = usuarioRepository.findById(idusuario);
-		modelAndView.addObject("usuarioobj", usuario.get()); //usuario.get injeta objetos para edição
+		modelAndView.addObject("usuarioobj", usuario.get());
+		Iterable<Usuario> usuariosIt = usuarioRepository.findAll();
+		modelAndView.addObject("usuarios", usuariosIt);
 		
 		return modelAndView;
+	}
+	
+	@GetMapping("/removeusuario/{idusuario}")
+	public ModelAndView delete(@PathVariable("idusuario") Long idusuario) {
+		
+		usuarioRepository.deleteById(idusuario);
+		
+		ModelAndView model = new ModelAndView("cadastro/cadastro_usuario");
+		model.addObject("usuarios", usuarioRepository.findAll());
+		model.addObject("usuarioobj", new Usuario());
+		
+		return model;
 	}
 
 }
