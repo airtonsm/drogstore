@@ -20,7 +20,7 @@
 	<h1>Cadastro Usuário</h1>
 
 	<form action="/salvarusuario" id="formUsuario" method="post"
-		th:object="${usuarioobj}" class="col s12" onsubmit="return validar() ? true : false">
+		th:object="${usuarioobj}" class="col s12">
 
 
 
@@ -28,7 +28,7 @@
 
 			<div class="col s6">
 				<label>Cod. usuário</label> 
-				<input name="nome" th:field="*{id}">
+				<input name="nome" th:field="*{id}" readonly="readonly">
 			</div>
 
 
@@ -65,12 +65,16 @@
 				<input type="password" name="senha"
 					th:field="*{senha}">
 			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<input class="waves-effect waves-light btn-small" type="submit" value="Salvar">
+		</div>
 
 		</div>
 
-		<div class="col s6">
-			<input type="submit" value="Salvar">
-		</div>
+
 
 
 
@@ -88,19 +92,6 @@
 		</tr>
 
 	</table>
-
-
-<script type="text/javascript">
-	
-	function validar(){
-		nome = document.getElementById('nome').value;
-		login = document.getElementById('login').value;
-		senha = document.getElementById('senha').value;
-		
-		
-	}
-
-</script>
 
 </body>
 </html>
