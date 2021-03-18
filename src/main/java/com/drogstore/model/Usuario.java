@@ -1,14 +1,12 @@
 package com.drogstore.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Usuario implements Serializable {
+public class Usuario  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +18,18 @@ public class Usuario implements Serializable {
 	private String login;
 	private String senha;
 	private String cargo;
+
+	@OneToMany
+	private List<Pedido> pedido;
+
+
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
+	}
 
 	public Long getId() {
 		return id;
