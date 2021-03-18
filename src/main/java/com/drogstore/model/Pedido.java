@@ -1,12 +1,9 @@
 package com.drogstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
 
 
 @Entity
@@ -20,9 +17,11 @@ public class Pedido implements Serializable {
     private double valor_total;
     private Date data;
 
+    @ManyToOne
     private Usuario usuario;
-    private Cliente cliente;
 
+    @OneToMany
+    private List<Produto> produto;
 
     public void setId(Long id) {
         this.id = id;
@@ -57,11 +56,11 @@ public class Pedido implements Serializable {
         this.usuario = usuario;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public List<Produto> getProduto() {
+        return produto;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setProduto(List<Produto> produto) {
+        this.produto = produto;
     }
 }
