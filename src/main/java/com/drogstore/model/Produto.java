@@ -18,9 +18,6 @@ public class Produto implements Serializable {
     private double preco;
 
 
-
-
-
     public void setId(Long id) {
         this.id = id;
     }
