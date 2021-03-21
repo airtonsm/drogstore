@@ -1,29 +1,53 @@
 package com.drogstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Produto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nome;
-    private double preco;
 
+    private String nome;
+    private Double preco;
+    private int quant_estoque;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "produtos")
+    private List<Pedido> pedido;
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-    public Long getId() {
-        return id;
+    public String getNome() {
+        return nome;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public int getQuant_estoque() {
+        return quant_estoque;
+    }
+
+    public void setQuant_estoque(int quant_estoque) {
+        this.quant_estoque = quant_estoque;
+    }
+
 }
