@@ -19,17 +19,7 @@ public class Usuario  {
 	private String senha;
 	private String cargo;
 
-	@OneToMany
-	private List<Pedido> pedido;
 
-
-	public List<Pedido> getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(List<Pedido> pedido) {
-		this.pedido = pedido;
-	}
 
 	public Long getId() {
 		return id;
