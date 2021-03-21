@@ -2,9 +2,34 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Cadastro de Cliente</title>
+
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
+
+<h1>Cadastro de Cliente</h1>
+
+    <form action="/salvarcliente" method="post" id="formCliente">
+
+        <label>Nome: </label>
+        <input name="nome">
+
+        <label>cpf/cnpj</label>
+        <input name="cpf">
+
+        <label>Contato: </label>
+        <input name="contato">
+
+        <input type="submit" value="enviar">
+
+
+
+    </form>
 
 </body>
 </html>
