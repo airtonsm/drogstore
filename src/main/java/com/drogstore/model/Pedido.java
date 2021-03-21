@@ -5,49 +5,44 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
 @Entity
 public class Pedido implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double valor_total;
+
+    private Double valor_total;
     private Date data;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "pedido_produto",
+    joinColumns = {@JoinColumn(name = "pedido_id", nullable = false, updatable = false)},
+    inverseJoinColumns = {@JoinColumn(name = "produto_id", nullable = false, updatable = false)})
+    private List<Produto> produtos;
 
     @ManyToOne
     private Usuario usuario;
-
-    @OneToMany(fetch =FetchType.EAGER)
-    @JoinTable(name="pedido_produtos", uniqueConstraints = @UniqueConstraint(
-            columnNames = {"id_pedido", "id_produto"}, name = "unique_pedido_produto"),
-    joinColumns = @JoinColumn(name = "id_pedido",
-            referencedColumnName = "id",
-            table = "pedido", unique = false,
-    foreignKey = @ForeignKey(name = "pedido_fk,", value = ConstraintMode.CONSTRAINT)),
-
-    inverseJoinColumns = @JoinColumn(name = "produto_id", unique = false ,
-            referencedColumnName = "id", updatable = false,
-    table = "produto", foreignKey = @ForeignKey(name = "produto_fk", value = ConstraintMode.CONSTRAINT)))
-    private List<Produto> produto;
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 
     public Long getId() {
         return id;
     }
 
-    public double getValor_total() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getValor_total() {
         return valor_total;
     }
 
-    public void setValor_total(double valor_total) {
+    public void setValor_total(Double valor_total) {
         this.valor_total = valor_total;
     }
 
@@ -59,19 +54,19 @@ public class Pedido implements Serializable {
         this.data = data;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public List<Produto> getProduto() {
-        return produto;
-    }
-
-    public void setProduto(List<Produto> produto) {
-        this.produto = produto;
     }
 }
