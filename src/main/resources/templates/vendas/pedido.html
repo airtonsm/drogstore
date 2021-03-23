@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Vendas</title>
@@ -12,47 +11,45 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
+    <h1>Pedido</h1>
 
-<h1>Pedido</h1>
+<input type="text" id="produto" placeholder="Produto" />
+<input type="number" id="valor" placeholder="Valor" />
+<input type="text" id="acao" placeholder="Ação" />
 
-<label>Vendedor</label>
-<input name="usuario">
+<button onclick="adicionaLinha('tbl')">Adicionar</button>
 
-<label>Nome do cliente</label>
-<input name="cliente">
-
-
-
-    <label>codigo</label>
-    <input>
-    <label>nome do produto</label>
-    <input>
-
-<table>
-
-
+<table id="tbl" border="1">
     <tr>
-        <th>Codigo</th>
-        <th>Nome do produto</th>
-        <th>Quant.</th>
-        <th>Quant. em Estoque</th>
-        <th>preco</th>
-        <th>total Valor</th>
+        <td>Produto</td>
+        <td>Valor</td>
+        <td>Ação</td>
     </tr>
-
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td ></td>
-        <td ></td>
-    </tr>
-
 </table>
 
-<input type="submit">
 
+<script>
+
+    function adicionaLinha(idTabela) {
+        var Produto = document.getElementById('produto').value;
+        var Valor = document.getElementById('valor').value;
+        var Acao = document.getElementById('acao').value;
+        var tabela = document.getElementById(idTabela);
+        var numeroLinhas = tabela.rows.length;
+        var linha = tabela.insertRow(numeroLinhas);
+        var celula1 = linha.insertCell(0);
+        var celula2 = linha.insertCell(1);
+        var celula3 = linha.insertCell(2);
+        celula1.innerHTML = Produto;
+        celula2.innerHTML = Valor;
+        celula3.innerHTML = Acao;
+    }
+
+    function removeLinha(linha) {
+        var i = linha.parentNode.parentNode.rowIndex;
+        document.getElementById('tbl').deleteRow(i);
+    }
+</script>
 
 </body>
 </html>
