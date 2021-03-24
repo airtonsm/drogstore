@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -15,14 +16,17 @@
 
 <form action="/salvarproduto" method="post" id="formCliente">
 
+    <label>Codigo: </label>
+    <input name="id" th:field="*{id}">
+
     <label>Descrição: </label>
-    <input name="nome">
+    <input name="nome" th:field="*{nome}">
 
     <label>Preço</label>
-    <input name="preco">
+    <input name="preco" th:field="*{preco}">
 
     <label>Quantidade: </label>
-    <input name="quant_estoque">
+    <input name="quant_estoque" th:field="*{quant_estoque}">
 
     <input type="submit" value="enviar">
 
