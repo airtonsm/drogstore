@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Vendas</title>
@@ -10,39 +11,67 @@
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
-    <h1>Pedido</h1>
+<body> <h1>Pedido</h1>
 
-<input type="text" id="produto" placeholder="Produto" />
-<input type="number" id="valor" placeholder="Valor" />
-<input type="text" id="acao" placeholder="Ação" />
+<form action="pesquisarMed" method="post" id="pesquisarMed">
+    <label for="medPesquisa">Pesquisar Medicamento</label>
 
-<button onclick="adicionaLinha('tbl')">Adicionar</button>
+    <input name="medPesquisa" id="medPesquisa">
 
-<table id="tbl" border="1">
-    <tr>
-        <td>Produto</td>
-        <td>Valor</td>
-        <td>Ação</td>
+    <input type="submit" value="pesquisar">
+</form>
+
+<table border="1">
+
+    <thead>
+        <th> Codigo</th>
+        <th>Descrição</th>
+        <th>Valor uni.</th>
+        <th>Quantidade</th>
+
+    </thead>
+
+    <tr th:each="produto : ${produtos}">
+        <td th:text="${produto.id}" id="id"></td>
+        <td th:text="${produto.nome}" id="nome"></td>
+        <td th:text="${produto.preco}" id="preco"></td>
+        <td th:text="${produto.quant_estoque}" id="quantidade"></td>
+        <td><button onclick="adicionaLinha('tbl')">Adicionar Item</button></td>
     </tr>
 </table>
 
+<table id="tbl" >
+
+    <caption><h4>Lista de compras</h4></caption>
+    <tr>
+        <td>Codigo</td>
+        <td>Descrição</td>
+        <td>Valor uni.</td>
+        <td>Quantidade</td>
+    </tr>
+</table>
 
 <script>
-
     function adicionaLinha(idTabela) {
-        var Produto = document.getElementById('produto').value;
-        var Valor = document.getElementById('valor').value;
-        var Acao = document.getElementById('acao').value;
+        var Codigo = document.getElementById('id').value;
+        var Nome = document.getElementById('nome').value;
+        var Valor = document.getElementById('preco').value;
+        var Quantidade = document.getElementById('quantidade').value;
         var tabela = document.getElementById(idTabela);
+
         var numeroLinhas = tabela.rows.length;
         var linha = tabela.insertRow(numeroLinhas);
+
         var celula1 = linha.insertCell(0);
         var celula2 = linha.insertCell(1);
         var celula3 = linha.insertCell(2);
-        celula1.innerHTML = Produto;
-        celula2.innerHTML = Valor;
-        celula3.innerHTML = Acao;
+        var celula4 = linha.insertCell(3);
+
+        celula1.innerHTML = Codigo;
+        celula2.innerHTML = Nome;
+        celula3.innerHTML = Valor;
+        celula4.innerHTML = Quantidade;
+
     }
 
     function removeLinha(linha) {
