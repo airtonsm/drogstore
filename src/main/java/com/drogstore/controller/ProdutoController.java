@@ -35,18 +35,17 @@ import java.util.List;
             return model;
         }
 
-        @PostMapping("**/pesquisarMed")
-            public ModelAndView pesquisar(@RequestParam("medPesquisa") String medPesquisa){
+    @PostMapping("**/pesquisarProduto")
+    public ModelAndView pesquisar(@RequestParam("medPesquisa") String medPesquisa){
 
-                List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<Produto>();
 
-                produtos = produtoRepository.findProdutoByNome(medPesquisa);
+        produtos = produtoRepository.findProdutoByNome(medPesquisa);
 
-                ModelAndView model = new ModelAndView("vendas/pedido");
-                model.addObject("produtos", produtos);
+        ModelAndView model = new ModelAndView("cadastro/cadastro_produto");
+        model.addObject("produtos", produtos);
 
-                return model;
-            }
-
+        return model;
+    }
 
     }
