@@ -11,6 +11,8 @@
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
+<a href="/menusistema"><--Menu</a>
 <body> <h1>Pedido</h1>
 
 <form action="pesquisarMed" method="post" id="pesquisarMed">
@@ -32,27 +34,30 @@
     </thead>
 
     <tr th:each="produto : ${produtos}">
-        <td th:text="${produto.id}" id="id"></td>
-        <td th:text="${produto.nome}" id="nome"></td>
-        <td th:text="${produto.preco}" id="preco"></td>
-        <td th:text="${produto.quant_estoque}" id="quantidade"></td>
+        <td th:text="${produto.id}" id="id"> </td>
+        <td th:text="${produto.nome}" ></td>
+        <td th:text="${produto.preco}" ></td>
+        <td th:text="${produto.quant_estoque}"></td>
         <td><button onclick="adicionaLinha('tbl')">Adicionar Item</button></td>
     </tr>
+
 </table>
 
 <table id="tbl" >
 
     <caption><h4>Lista de compras</h4></caption>
+
     <tr>
         <td>Codigo</td>
         <td>Descrição</td>
         <td>Valor uni.</td>
         <td>Quantidade</td>
     </tr>
+
 </table>
 
 <script>
-    function adicionaLinha(idTabela) {
+    function adicionaLinha(tbl) {
         var Codigo = document.getElementById('id').value;
         var Nome = document.getElementById('nome').value;
         var Valor = document.getElementById('preco').value;
