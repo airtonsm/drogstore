@@ -11,7 +11,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-
+<a href="/menusistema"><--Menu</a>
 <h1>Cadastro de Cliente</h1>
 
     <form action="/salvarcliente" method="post" id="formCliente">
@@ -27,9 +27,17 @@
 
         <input type="submit" value="enviar">
 
+    </form>
 
+    <form action="pesquisarCliente" method="get">
+
+        <label>Pesquisar Cliente</label>
+        <input id="pesquisarCliente">
+        <input type="submit" value="Pesquisar">
 
     </form>
+
+
 
 </body>
 </html>
