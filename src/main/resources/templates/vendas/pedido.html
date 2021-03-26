@@ -23,7 +23,7 @@
     <input type="submit" value="pesquisar">
 </form>
 
-<table border="1">
+<table>
 
     <thead>
         <th> Codigo</th>
@@ -34,17 +34,17 @@
     </thead>
 
     <tr th:each="produto : ${produtos}">
-        <td th:text="${produto.id}" id="id"> </td>
+        <td th:text="${produto.id}"> </td>
         <td th:text="${produto.nome}" ></td>
         <td th:text="${produto.preco}" ></td>
         <td th:text="${produto.quant_estoque}"></td>
-        <td><button onclick="adicionaLinha('tbl')">Adicionar Item</button></td>
+       <td> <a href="adicionarProduto?produtoid=${produto.id}&listaprodutos=${produtos}">Adicionar</a>
+       </td>
     </tr>
 
 </table>
 
-<table id="tbl" >
-
+<table>
     <caption><h4>Lista de compras</h4></caption>
 
     <tr>
@@ -52,6 +52,13 @@
         <td>Descrição</td>
         <td>Valor uni.</td>
         <td>Quantidade</td>
+    </tr>
+
+    <tr th:each="addproduto : ${addProdutos}">
+        <td th:text="${addproduto.id}"> </td>
+        <td th:text="${addproduto.nome}" ></td>
+        <td th:text="${addproduto.preco}" ></td>
+        <td th:text="${addproduto.quant_estoque}"></td>
     </tr>
 
 </table>
@@ -76,7 +83,6 @@
         celula2.innerHTML = Nome;
         celula3.innerHTML = Valor;
         celula4.innerHTML = Quantidade;
-
     }
 
     function removeLinha(linha) {
