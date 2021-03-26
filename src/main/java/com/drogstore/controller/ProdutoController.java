@@ -4,10 +4,7 @@ import com.drogstore.model.Produto;
 import com.drogstore.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -48,4 +45,20 @@ import java.util.List;
         return model;
     }
 
+    @GetMapping("**/adicionarProduto/{produtoid}&{listaprodutos}")
+    public ModelAndView addProduto(@PathVariable("produtoid") Long produtoid,
+                                   @PathVariable("listaprodutos") List<Produto> listaprodutos){
+
+//        Long idproduto = Long.parseLong(produtoid);
+        List<Produto> addProdutos = listaprodutos;
+        Produto produto = produtoRepository.findById(produtoid).get();
+        addProdutos.add(produto);
+
+        ModelAndView model = new ModelAndView("cadastro/cadastro_produto");
+        model.addObject("addProduto", addProdutos);
+        model.addObject("produtos", produtoRepository.findAll());
+
+        return model;
     }
+
+  }
