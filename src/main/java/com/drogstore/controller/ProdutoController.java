@@ -45,20 +45,4 @@ import java.util.List;
         return model;
     }
 
-    @GetMapping("**/adicionarProduto/{produtoid}&{listaprodutos}")
-    public ModelAndView addProduto(@PathVariable("produtoid") Long produtoid,
-                                   @PathVariable("listaprodutos") List<Produto> listaprodutos){
-
-//        Long idproduto = Long.parseLong(produtoid);
-        List<Produto> addProdutos = listaprodutos;
-        Produto produto = produtoRepository.findById(produtoid).get();
-        addProdutos.add(produto);
-
-        ModelAndView model = new ModelAndView("cadastro/cadastro_produto");
-        model.addObject("addProduto", addProdutos);
-        model.addObject("produtos", produtoRepository.findAll());
-
-        return model;
-    }
-
   }

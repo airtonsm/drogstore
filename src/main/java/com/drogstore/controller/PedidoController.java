@@ -30,7 +30,7 @@ public class PedidoController {
     @PostMapping("**/pesquisarMed")
     public ModelAndView pesquisar(@RequestParam("medPesquisa") String medPesquisa){
 
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos;
 
         produtos = produtoRepository.findProdutoByNome(medPesquisa);
 
