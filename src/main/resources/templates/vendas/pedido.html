@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Vendas</title>
 
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <a href="/menusistema"><--Menu</a>
-<body> <h1>Pedido</h1>
+<body>
+<h1>Pedido</h1>
 
 <form action="pesquisarMed" method="post" id="pesquisarMed">
     <label for="medPesquisa">Pesquisar Medicamento</label>
 
-    <input name="medPesquisa" id="medPesquisa">
+    <input name="medPesquisa" id="medPesquisa" />
 
-    <input type="submit" value="pesquisar">
+    <input type="submit" value="pesquisar" />
 </form>
 
-<table>
-
+<table id="tbl1">
     <thead>
-        <th> Codigo</th>
-        <th>Descrição</th>
-        <th>Valor uni.</th>
-        <th>Quantidade</th>
-
+    <th>Codigo</th>
+    <th>Descrição</th>
+    <th>Valor uni.</th>
+    <th>Quantidade</th>
     </thead>
 
     <tr th:each="produto : ${produtos}">
-        <td th:text="${produto.id}"> </td>
-        <td th:text="${produto.nome}" ></td>
-        <td th:text="${produto.preco}" ></td>
-        <td th:text="${produto.quant_estoque}"></td>
-       <td> <a href="adicionarProduto?produtoid=${produto.id}&listaprodutos=${produtos}">Adicionar</a>
-       </td>
+        <td id="id" th:text="${produto.id}"></td>
+        <td id="nome" th:text="${produto.nome}"></td>
+        <td id="preco" th:text="${produto.preco}"></td>
+        <td id="qtd" th:text="${produto.quant_estoque}"></td>
+        <td>
+            <button onclick="add()" name="botao" id="botao">Adicionar</button>
+        </td>
     </tr>
-
 </table>
 
-<table>
-    <caption><h4>Lista de compras</h4></caption>
+<table id="tbl2">
+    <caption>
+        <h4>Lista de compras</h4>
+    </caption>
 
     <tr>
         <td>Codigo</td>
@@ -55,20 +55,43 @@
     </tr>
 
     <tr th:each="addproduto : ${addProdutos}">
-        <td th:text="${addproduto.id}"> </td>
-        <td th:text="${addproduto.nome}" ></td>
-        <td th:text="${addproduto.preco}" ></td>
+        <td th:text="${addproduto.id}"></td>
+        <td th:text="${addproduto.nome}"></td>
+        <td th:text="${addproduto.preco}"></td>
         <td th:text="${addproduto.quant_estoque}"></td>
     </tr>
-
 </table>
 
 <script>
+    function add() {
+        var table1 = document.getElementById("tbl1");
+        var table2 = document.getElementById("tbl2");
+        var botao = document.getElementsByName("botao");
+        var i = 0;
+
+        console.log("variavel=" + botao.length);
+
+        // create new row and cells
+        var newRow = table2.insertRow(table2.length);
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
+        var cell4 = newRow.insertCell(3);
+        var cell5 = newRow.insertCell(4);
+
+        // add values to the cells
+        cell1.innerHTML = table1.rows[i + 1].cells[0].innerHTML;
+        cell2.innerHTML = table1.rows[i + 1].cells[1].innerHTML;
+        cell3.innerHTML = table1.rows[i + 1].cells[2].innerHTML;
+        cell4.innerHTML = table1.rows[i + 1].cells[3].innerHTML;
+        cell5.innerHTML = " <button onclick='add()' name='botao' id='botao'>Adicionar</button>";
+    }
+
     function adicionaLinha(tbl) {
-        var Codigo = document.getElementById('id').value;
-        var Nome = document.getElementById('nome').value;
-        var Valor = document.getElementById('preco').value;
-        var Quantidade = document.getElementById('quantidade').value;
+        var Codigo = document.getElementById("id").value;
+        var Nome = document.getElementById("nome").value;
+        var Valor = document.getElementById("preco").value;
+        var Quantidade = document.getElementById("quantidade").value;
         var tabela = document.getElementById(idTabela);
 
         var numeroLinhas = tabela.rows.length;
@@ -87,9 +110,8 @@
 
     function removeLinha(linha) {
         var i = linha.parentNode.parentNode.rowIndex;
-        document.getElementById('tbl').deleteRow(i);
+        document.getElementById("tbl").deleteRow(i);
     }
 </script>
-
 </body>
 </html>
