@@ -26,6 +26,8 @@ public class Pedido implements Serializable {
     inverseJoinColumns = {@JoinColumn(name = "produto_id", nullable = false, updatable = false)})
     private List<Produto> produtos;
 
+
+
     @ManyToOne
     private Usuario usuario;
 

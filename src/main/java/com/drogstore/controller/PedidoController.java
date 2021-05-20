@@ -42,4 +42,8 @@ public class PedidoController {
         return model;
     }
 
+    // criar method para adicionar produtos na tabela pedido
+
+
+
 }
