@@ -1,7 +1,4 @@
-package com.drogstore.model;
-
-import java.io.Serializable;
-import java.util.List;
+package com.drogstore.entidades;
 
 import javax.persistence.*;
 

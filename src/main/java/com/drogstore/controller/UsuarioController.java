@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.drogstore.model.Usuario;
+import com.drogstore.entidades.Usuario;
 import com.drogstore.repository.UsuarioRepository;
 
 @Controller

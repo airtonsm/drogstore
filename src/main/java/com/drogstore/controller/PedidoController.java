@@ -1,7 +1,6 @@
 package com.drogstore.controller;
 
-import com.drogstore.model.Pedido;
-import com.drogstore.model.Produto;
+import com.drogstore.entidades.Produto;
 import com.drogstore.repository.PedidoProdutoRepository;
 import com.drogstore.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

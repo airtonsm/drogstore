@@ -1,6 +1,6 @@
 package com.drogstore.repository;
 
-import com.drogstore.model.Usuario;
+import com.drogstore.entidades.Usuario;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

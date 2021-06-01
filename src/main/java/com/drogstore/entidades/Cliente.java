@@ -1,4 +1,4 @@
-package com.drogstore.model;
+package com.drogstore.entidades;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

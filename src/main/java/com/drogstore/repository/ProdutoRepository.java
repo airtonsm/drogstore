@@ -1,6 +1,6 @@
 package com.drogstore.repository;
 
-import com.drogstore.model.Produto;
+import com.drogstore.entidades.Produto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
