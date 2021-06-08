@@ -1,21 +1,31 @@
 package com.drogstore.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
+@Table(name = "tb_cliente")
 public class Cliente implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
     private String cpf;
     private String contato;
+
+    public Cliente(){
+
+    }
+
+    public Cliente(Long id, String nome, String cpf, String contato) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.contato = contato;
+    }
 
     public Long getId() {
         return id;
@@ -47,5 +57,18 @@ public class Cliente implements Serializable {
 
     public void setContato(String contato) {
         this.contato = contato;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cliente)) return false;
+        Cliente cliente = (Cliente) o;
+        return getId().equals(cliente.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

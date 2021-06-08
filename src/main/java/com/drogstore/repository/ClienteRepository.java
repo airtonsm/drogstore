@@ -1,11 +1,9 @@
 package com.drogstore.repository;
 
 import com.drogstore.entidades.Cliente;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface ClienteRepository extends CrudRepository<Cliente, Long> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 
 

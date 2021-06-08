@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepository repository;
 
     @RequestMapping(method = RequestMethod.GET, value = "/cadastro_cliente")
     public ModelAndView inicio(){
@@ -26,7 +27,7 @@ public class ClienteController {
     public ModelAndView salvar(Cliente cliente){
 
         ModelAndView model = new ModelAndView("cadastro/cadastro_cliente");
-        clienteRepository.save(cliente);
+        repository.save(cliente);
 
         return model;
     }

@@ -20,7 +20,7 @@ public class Pedido_produto implements Serializable {
     private List<Produto> produtos;
 
     public Pedido_produto(){}
-    
+
     public Pedido_produto(Pedido pedido, Produto produto, Integer quant_produto, Double valor){
         id.setPedido(pedido);
         id.setProduto(produto);

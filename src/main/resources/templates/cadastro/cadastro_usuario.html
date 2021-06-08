@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8">
 
 <title>Cadastro Usuario</title>
 
@@ -50,7 +50,7 @@
 			</div>
 
 			<div class="input-field col s6">
-				<label for="cargo" class="active">Cargo</label> <select
+				<label  class="active">Cargo</label> <select
 					class="browser-default" th:field="*{cargo}">
 					<option value="" disabled selected>----[SELECIONE]-----</option>
 					<option value="ADM" th:text="ADMINISTRADOR" />
@@ -75,22 +75,27 @@
 		</div>
 
 		</div>
-
-
-
-
-
 	</form>
-
+	<br/>
+	<br/>
 	<table>
+		<caption><h3>Lista de usuários cadastrados</h3></caption>
+		<thead>
+		<th>Id</th>
+		<th>Nome</th>
+		<th>Login</th>
+		<th>Cargo</th>
+		<th>Editar</th>
+		<th>Excluir</th>
+		</thead>
+
 		<tr th:each="usuario : ${usuarios}">
-			<td th:text="${usuario.id}"></td>
-			<td th:text="${usuario.nome}"></td>
-			<td th:text="${usuario.login}"></td>
-			<td th:text="${usuario.cargo}"></td>
+			<td th:text="${usuario.id}">1</td>
+			<td th:text="${usuario.nome}">João Felipe</td>
+			<td th:text="${usuario.login}">joao</td>
+			<td th:text="${usuario.cargo}">VENDEDOR</td>
 			<td><a th:href="@{/editarusuario/{idusuario}(idusuario=${usuario.id})}">Editar</a></td>
 			<td><a th:href="@{/removeusuario/{idusuario}(idusuario=${usuario.id})}">Excluir</a></td>
-
 		</tr>
 
 	</table>

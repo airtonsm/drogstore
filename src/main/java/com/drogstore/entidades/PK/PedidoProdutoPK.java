@@ -6,10 +6,11 @@ import com.drogstore.entidades.Produto;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class PedidoProdutoPK {
+public class PedidoProdutoPK implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
