@@ -32,16 +32,6 @@ import java.util.List;
             return model;
         }
 
-    @PostMapping("**/pesquisarProduto")
-    public ModelAndView pesquisar(@RequestParam("medPesquisa") String medPesquisa){
 
-        List<Produto> produtos;
-        produtos = servico.listarPorNome(medPesquisa);
-
-        ModelAndView model = new ModelAndView("cadastro/cadastro_produto");
-        model.addObject("produtos", produtos);
-
-        return model;
-    }
 
   }

@@ -1,13 +1,11 @@
 package com.drogstore.service;
 
 import com.drogstore.entidades.Produto;
-import com.drogstore.entidades.Produto;
 import com.drogstore.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProdutoServico {
@@ -28,12 +26,19 @@ public class ProdutoServico {
         return obj;
     }
 
-    public List<Produto> listarPorNome(String nome){
-        List<Produto> obj = repository.findProdutoByNome(nome);
-        return obj;
+    public List<Produto>  listarPorNome(String nome){
+        List<Produto> objeto = repository.findProdutoByNome(nome);
+        return objeto;
     }
 
     public void deletarPorId(long id){
         repository.deleteById(id);
+    }
+
+
+    Set<Produto> produtos = new HashSet<>();
+    public Set<Produto> addProdutos(Produto obj){
+        produtos.add(obj);
+        return produtos;
     }
 }

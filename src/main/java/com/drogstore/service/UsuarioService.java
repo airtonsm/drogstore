@@ -5,6 +5,8 @@ import com.drogstore.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +30,12 @@ public class UsuarioService {
 
     public void deletarPorId(long id){
         repository.deleteById(id);
+    }
+
+    List<Usuario> list = new ArrayList<>();
+    public List<Usuario> listarUsuarios(Usuario obj){
+        list.add(obj);
+        return list;
     }
 
 }
