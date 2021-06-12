@@ -2,12 +2,10 @@ package com.drogstore.controller;
 
 import java.util.Optional;
 
+import com.drogstore.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -18,34 +16,33 @@ import com.drogstore.repository.UsuarioRepository;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UsuarioService service;
 
-
-	@RequestMapping(method = RequestMethod.GET, value = "/cadastro_usuario")
+	@GetMapping( value = "/cadastro_usuario")
 	public ModelAndView cadastroUsuario() {
 		ModelAndView modelAndView =  new ModelAndView("cadastro/cadastro_usuario");
-		Iterable<Usuario> usuariosIt = usuarioRepository.findAll();
+		Iterable<Usuario> usuariosIt = service.listarTodos();
 		modelAndView.addObject("usuarioobj", new Usuario());
 		modelAndView.addObject("usuarios", usuariosIt);
 		return modelAndView;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "**/salvarusuario")
+	@PostMapping(value = "**/salvarusuario")
 	public ModelAndView salvar(Usuario usuario) {
 		
 		ModelAndView model = new ModelAndView("cadastro/cadastro_usuario");
-		Iterable<Usuario> usuariosIt = usuarioRepository.findAll();
+		Iterable<Usuario> usuariosIt = service.listarTodos();
 		model.addObject("usuarios", usuariosIt);
 		model.addObject("usuarioobj", new Usuario());
-		usuarioRepository.save(usuario);
+		service.inserir(usuario);
 		
 		return model;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/listarusuarios")
+	@GetMapping(value = "/listarusuarios")
 	public ModelAndView usuarios() {
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
-		Iterable<Usuario> usuariosIt = usuarioRepository.findAll();
+		Iterable<Usuario> usuariosIt = service.listarTodos();
 		modelAndView.addObject("usuarios", usuariosIt);
 		return modelAndView;
 	}
@@ -54,21 +51,21 @@ public class UsuarioController {
 	public ModelAndView editar(@PathVariable("idusuario") Long idusuario) {
 		 
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
-		Optional<Usuario> usuario = usuarioRepository.findById(idusuario);
+		Optional<Usuario> usuario = service.ListaPorId(idusuario);
 		modelAndView.addObject("usuarioobj", usuario.get());
-		Iterable<Usuario> usuariosIt = usuarioRepository.findAll();
+		Iterable<Usuario> usuariosIt = service.listarTodos();
 		modelAndView.addObject("usuarios", usuariosIt);
 		
 		return modelAndView;
 	}
 	
-	@GetMapping("/removeusuario/{idusuario}")
+	@DeleteMapping("/removeusuario/{idusuario}")
 	public ModelAndView delete(@PathVariable("idusuario") Long idusuario) {
 		
-		usuarioRepository.deleteById(idusuario);
+		service.deletarPorId(idusuario);
 		
 		ModelAndView model = new ModelAndView("cadastro/cadastro_usuario");
-		model.addObject("usuarios", usuarioRepository.findAll());
+		model.addObject("usuarios", service.listarTodos());
 		model.addObject("usuarioobj", new Usuario());
 		
 		return model;
