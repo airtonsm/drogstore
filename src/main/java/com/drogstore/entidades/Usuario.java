@@ -1,6 +1,7 @@
 package com.drogstore.entidades;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Usuario  {
@@ -12,11 +13,24 @@ public class Usuario  {
 	private Long id;
 
 	private String nome;
+	private String cargo;
 	private String login;
 	private String senha;
-	private String cargo;
 
+	@OneToMany
+	private List<Pedido> pedidos;
 
+	public Usuario(){
+
+	}
+
+	public Usuario(Long id, String nome, String login, String senha, String cargo) {
+		this.id = id;
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+		this.cargo = cargo;
+	}
 
 	public Long getId() {
 		return id;
@@ -58,4 +72,23 @@ public class Usuario  {
 		this.cargo = cargo;
 	}
 
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Usuario)) return false;
+
+		Usuario usuario = (Usuario) o;
+
+		return getId() != null ? getId().equals(usuario.getId()) : usuario.getId() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		return getId() != null ? getId().hashCode() : 0;
+	}
+
+	public List<Pedido> getPedidos(){
+		return pedidos;
+	}
 }
