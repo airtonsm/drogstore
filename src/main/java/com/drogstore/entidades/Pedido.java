@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "tb_pedido")
 public class Pedido implements Serializable {
 
     @Id
@@ -28,7 +29,7 @@ public class Pedido implements Serializable {
     @OneToMany(mappedBy = "id.pedido") // id.pedido que possui qual pedido ira se relacionará com a collection de produtos
    private Set<Pedido_produto> produtos = new HashSet<>();
 
-    public void Pedido(){}
+    public Pedido(){}
 
     public Pedido(Long id, Instant data, Usuario usuario, Cliente cliente) {
         this.id = id;

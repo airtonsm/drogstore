@@ -2,6 +2,8 @@ package com.drogstore.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,17 +16,21 @@ public class Cliente implements Serializable {
 
     private String nome;
     private String cpf;
-    private String contato;
+    private String email;
+    private String telefone;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente(){
-
     }
 
-    public Cliente(Long id, String nome, String cpf, String contato) {
+    public Cliente(Long id, String nome, String cpf, String email, String telefone) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
-        this.contato = contato;
+        this.email = email;
+        this.telefone = telefone;
     }
 
     public Long getId() {
@@ -51,24 +57,40 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getContato() {
-        return contato;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContato(String contato) {
-        this.contato = contato;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Cliente)) return false;
+
         Cliente cliente = (Cliente) o;
-        return getId().equals(cliente.getId());
+
+        if (getId() != null ? !getId().equals(cliente.getId()) : cliente.getId() != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return getId() != null ? getId().hashCode() : 0;
     }
 }

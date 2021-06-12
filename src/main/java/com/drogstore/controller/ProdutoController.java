@@ -2,6 +2,7 @@ package com.drogstore.controller;
 
 import com.drogstore.entidades.Produto;
 import com.drogstore.repository.ProdutoRepository;
+import com.drogstore.service.ProdutoServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
     public class ProdutoController {
 
         @Autowired
-        private ProdutoRepository produtoRepository;
+        private ProdutoServico servico;
 
         @RequestMapping(method = RequestMethod.GET, value = "/cadastro_produto")
         public ModelAndView inicio(){
@@ -26,7 +27,7 @@ import java.util.List;
         public ModelAndView salvar(Produto produto){
 
             ModelAndView model = new ModelAndView("cadastro/cadastro_produto");
-            produtoRepository.save(produto);
+            servico.inserir(produto);
 
             return model;
         }
@@ -35,7 +36,7 @@ import java.util.List;
     public ModelAndView pesquisar(@RequestParam("medPesquisa") String medPesquisa){
 
         List<Produto> produtos;
-        produtos = produtoRepository.findProdutoByNome(medPesquisa);
+        produtos = servico.listarPorNome(medPesquisa);
 
         ModelAndView model = new ModelAndView("cadastro/cadastro_produto");
         model.addObject("produtos", produtos);

@@ -2,6 +2,7 @@ package com.drogstore.controller;
 
 import com.drogstore.entidades.Cliente;
 import com.drogstore.repository.ClienteRepository;
+import com.drogstore.service.ClienteServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository repository;
+    private ClienteServico servico;
 
     @RequestMapping(method = RequestMethod.GET, value = "/cadastro_cliente")
     public ModelAndView inicio(){
-
         ModelAndView model = new ModelAndView("cadastro/cadastro_cliente");
         return  model;
 
@@ -27,8 +27,7 @@ public class ClienteController {
     public ModelAndView salvar(Cliente cliente){
 
         ModelAndView model = new ModelAndView("cadastro/cadastro_cliente");
-        repository.save(cliente);
-
+        servico.inserir(cliente);
         return model;
     }
 

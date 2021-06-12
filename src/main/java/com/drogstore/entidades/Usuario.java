@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "tb_usuario")
 public class Usuario  {
 
 	private static final long serialVersionUID = 1L;
