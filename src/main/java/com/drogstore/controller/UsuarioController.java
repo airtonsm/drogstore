@@ -37,7 +37,6 @@ public class UsuarioController {
 		service.inserir(usuario);
 
 		service.listarUsuarios(usuario);
-		
 		return model;
 	}
 	
@@ -53,11 +52,11 @@ public class UsuarioController {
 	public ModelAndView editar(@PathVariable("idusuario") Long idusuario) {
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
 		Optional<Usuario> usuario = service.ListaPorId(idusuario);
+
 		modelAndView.addObject("usuarioobj", usuario.get());
-		Iterable<Usuario> usuariosIt = service.listarTodos();
+		Iterable<Usuario> usuariosIt = service.listarTodos(); // ao clicar em editar aqui devolver toda a lista
+
 		modelAndView.addObject("usuarios", usuariosIt);
-
-
 		return modelAndView;
 	}
 	

@@ -21,8 +21,8 @@ public class ProdutoServico {
         return repository.save(obj);
     }
 
-    public Optional<Produto> ListaPorId(Long id){
-        Optional<Produto> obj = repository.findById(id);
+    public List<Produto> ListaPorId(Long id){
+        List<Produto> obj = repository.listarPorId(id);
         return obj;
     }
 
@@ -36,9 +36,10 @@ public class ProdutoServico {
     }
 
 
-    Set<Produto> produtos = new HashSet<>();
-    public Set<Produto> addProdutos(Produto obj){
-        produtos.add(obj);
-        return produtos;
+    List<Produto> produtosLista = new ArrayList<>();
+
+    public List<Produto> addProdutos(Produto obj){
+        produtosLista.add(obj);
+        return produtosLista;
     }
 }

@@ -33,9 +33,12 @@ public class UsuarioService {
     }
 
     List<Usuario> list = new ArrayList<>();
+
     public List<Usuario> listarUsuarios(Usuario obj){
         list.add(obj);
+
         return list;
+
     }
 
 }

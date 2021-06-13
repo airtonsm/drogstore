@@ -15,7 +15,7 @@
 <br/>
 <br/>
 
-<h1>Pedido</h1>
+<h1>Balcao de Vendas</h1>
 
         <label> Vendedor: </label>
         <br/><br/>
@@ -23,16 +23,16 @@
 
 <br/><br/>
 
-<form action="pesquisarMed" method="get" id="pesquisarMed">
+<form action="pesquisarProduto" method="get" id="pesquisarMed">
     <label for="medPesquisa">Pesquisar Medicamento</label>
 
     <input name="medPesquisa" id="medPesquisa" />
-
     <input type="submit" value="pesquisar" />
+
 </form>
 
-
-<table id="tbl1">
+<h2>Resultado</h2>
+<table>
     <thead>
     <th>Codigo</th>
     <th>Descrição</th>
@@ -44,11 +44,26 @@
         <td id="id" th:text="${produto.id}"></td>
         <td id="nome" th:text="${produto.nome}"></td>
         <td id="preco" th:text="${produto.preco}"></td>
-        <td><input type="text"/></td>
+        <td><a th:href="@{/addproduto/{idproduto}(idproduto=${produto.id})}">Adicionar</a></button></td>
     <td>
-            <button th:action="/addproduto">Adicionar</button>
-        </td>
-    </tr>
+</table>
+
+
+
+<br/><br/>
+<table>
+    <thead>
+    <th>Codigo</th>
+    <th>Descrição</th>
+    <th>Valor uni.</th>
+    <th>Quantidade</th>
+    </thead>
+
+    <tr th:each="produto : ${produtos}">
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
+        <td>
 </table>
 
 </body>

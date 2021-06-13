@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -20,6 +21,7 @@ public class PedidoController {
     @Autowired
     ProdutoServico produtoServico;
 
+    @Autowired
     PedidoProdutoRepository pedidoRepository;
 
     @GetMapping(value = "/pedido")
@@ -29,11 +31,15 @@ public class PedidoController {
     }
 
 
-    @GetMapping(value = "/addProduto")
-    public ModelAndView salvar(Pedido_produto pedidoProduto, Pedido pedido, Produto produto){
+    @GetMapping(value = "/addprodutopedido/{idproduto}")
+    public ModelAndView adicionarProduto(@PathVariable("idproduto") Long idproduto){
+
+        List<Produto> produtoId = produtoServico.ListaPorId(idproduto); //criando lista
+        //preciso pegar o id produto selecionado e adicionar na lista
+        List<Produto> produtosLista = produtoServico.addProdutos(produtoId.get(idproduto)); // add lista no método addProdutos, para criar lista
+
         ModelAndView model = new ModelAndView("vendas/pedido");
-        Set<Produto> produtosLista = produtoServico.addProdutos(produto);
-        model.addObject("produtos", produtosLista);
+        model.addObject("produtolista", produtosLista);//adicionar produto a lista de compras
 
         return model;
     }
@@ -47,7 +53,4 @@ public class PedidoController {
 
         return model;
     }
-
-
-
 }
