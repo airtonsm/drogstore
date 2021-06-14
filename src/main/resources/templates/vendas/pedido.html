@@ -59,8 +59,8 @@
     <th>Quantidade</th>
     </thead>
 
-    <tr th:each="produto : ${produtos}">
-        <td th:text="${}"></td>
+    <tr th:each="produtos : ${produtosLista}">
+        <td th:text="${produtos.id}"></td>
         <td th:text="${}"></td>
         <td th:text="${}"></td>
         <td>

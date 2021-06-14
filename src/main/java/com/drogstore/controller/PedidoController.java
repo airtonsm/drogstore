@@ -34,12 +34,10 @@ public class PedidoController {
     @GetMapping(value = "/addprodutopedido/{idproduto}")
     public ModelAndView adicionarProduto(@PathVariable("idproduto") Long idproduto){
 
-        List<Produto> produtoId = produtoServico.ListaPorId(idproduto); //criando lista
-        //preciso pegar o id produto selecionado e adicionar na lista
-        List<Produto> produtosLista = produtoServico.addProdutos(produtoId.get(idproduto)); // add lista no método addProdutos, para criar lista
+
 
         ModelAndView model = new ModelAndView("vendas/pedido");
-        model.addObject("produtolista", produtosLista);//adicionar produto a lista de compras
+
 
         return model;
     }

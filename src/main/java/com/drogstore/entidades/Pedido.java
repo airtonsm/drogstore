@@ -3,10 +3,7 @@ package com.drogstore.entidades;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -27,7 +24,7 @@ public class Pedido implements Serializable {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "id.pedido") // id.pedido que possui qual pedido ira se relacionará com a collection de produtos
-   private Set<Pedido_produto> produtos = new HashSet<>();
+   private List<Pedido_produto> produtos = new ArrayList<>();
 
     public Pedido(){}
 
@@ -70,8 +67,12 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
-    public Set<Pedido_produto> getProdutos() {
+    public List<Pedido_produto> getProdutos() {
         return produtos;
+    }
+
+    public void setProdutos(List<Pedido_produto> produtos) {
+        this.produtos = produtos;
     }
 
     @Override

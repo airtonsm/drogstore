@@ -1,5 +1,6 @@
 package com.drogstore.repository;
 
+import com.drogstore.entidades.Pedido_produto;
 import com.drogstore.entidades.Produto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,8 +16,7 @@ public interface ProdutoRepository extends CrudRepository<Produto, Long> {
     @Query("select p from Produto p where p.nome like %?1%")
     List<Produto> findProdutoByNome(String nome);
 
-    @Query("select p from Produto p where p.id")
-    List<Produto> listarPorId(Long id);
+
 
 
 }

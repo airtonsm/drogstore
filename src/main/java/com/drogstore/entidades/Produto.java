@@ -79,6 +79,11 @@ public class Produto implements Serializable {
         return produtos;
     }
 
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
