@@ -13,7 +13,7 @@ public class ProdutoServico {
     @Autowired
     private ProdutoRepository repository;
 
-    public Iterable<Produto> listarTodos(){
+    public List<Produto> listarTodos(){
         return repository.findAll();
     }
 
@@ -31,9 +31,8 @@ public class ProdutoServico {
     }
 
 
-    Set<Optional<Produto>> produtosLista = new HashSet<>();
-
-    public Set<Optional<Produto>> addProdutos(Optional<Produto> obj){
+    List<Produto> produtosLista = new ArrayList<>();
+    public List<Produto> addProdutos(Produto obj){
         produtosLista.add(obj);
         return produtosLista;
     }

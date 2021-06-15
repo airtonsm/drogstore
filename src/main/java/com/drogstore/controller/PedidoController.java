@@ -1,8 +1,6 @@
 package com.drogstore.controller;
 
-import com.drogstore.entidades.Pedido;
-import com.drogstore.entidades.Pedido_produto;
-import com.drogstore.entidades.Produto;
+import com.drogstore.entidades.*;
 import com.drogstore.repository.PedidoProdutoRepository;
 import com.drogstore.repository.ProdutoRepository;
 import com.drogstore.service.ProdutoServico;
@@ -27,18 +25,20 @@ public class PedidoController {
     @GetMapping(value = "/pedido")
     public ModelAndView inicio(){
         ModelAndView model = new ModelAndView("vendas/pedido");
+
+        model.addObject("pedido", new Pedido());
+        model.addObject("cliente", new Cliente());
+        model.addObject("usuario", new Usuario());
+
+
         return model;
     }
 
 
+
     @GetMapping(value = "/addprodutopedido/{idproduto}")
     public ModelAndView adicionarProduto(@PathVariable("idproduto") Long idproduto){
-
-
-
         ModelAndView model = new ModelAndView("vendas/pedido");
-
-
         return model;
     }
 

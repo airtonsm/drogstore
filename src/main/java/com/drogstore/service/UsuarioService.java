@@ -23,8 +23,8 @@ public class UsuarioService {
         return repository.save(obj);
     }
 
-    public Optional<Usuario> ListaPorId(Long id){
-        Optional<Usuario> obj = repository.findById(id);
+    public List<Usuario> ListaPorId(Long id){
+        List<Usuario> obj ;
         return obj;
     }
 
@@ -32,13 +32,5 @@ public class UsuarioService {
         repository.deleteById(id);
     }
 
-    List<Usuario> list = new ArrayList<>();
-
-    public List<Usuario> listarUsuarios(Usuario obj){
-        list.add(obj);
-
-        return list;
-
-    }
 
 }

@@ -23,8 +23,8 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "id.pedido") // id.pedido que possui qual pedido ira se relacionará com a collection de produtos
-   private List<Pedido_produto> produtos = new ArrayList<>();
+    @OneToMany(mappedBy = "id.pedido") // id.pedido que possui qual pedido ira se relacionará com a collection de pedidoProduto
+   private List<Pedido_produto> pedidoProduto = new ArrayList<>();
 
     public Pedido(){}
 
@@ -68,11 +68,11 @@ public class Pedido implements Serializable {
     }
 
     public List<Pedido_produto> getProdutos() {
-        return produtos;
+        return pedidoProduto;
     }
 
-    public void setProdutos(List<Pedido_produto> produtos) {
-        this.produtos = produtos;
+    public void setProdutos(List<Pedido_produto> pedidoProduto) {
+        this.pedidoProduto = pedidoProduto;
     }
 
     @Override

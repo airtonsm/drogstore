@@ -6,6 +6,7 @@ import com.drogstore.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,17 +15,12 @@ public class ClienteServico {
     @Autowired
     private ClienteRepository repository;
 
-    public Iterable<Cliente> listarTodos(){
+    public List<Cliente> listarTodos(){
         return repository.findAll();
     }
 
     public Cliente inserir(Cliente obj){
         return repository.save(obj);
-    }
-
-    public Optional<Cliente> listarPorId(Long id){
-        Optional<Cliente> obj = repository.findById(id);
-        return obj;
     }
 
     public void deletarPorId(long id){
