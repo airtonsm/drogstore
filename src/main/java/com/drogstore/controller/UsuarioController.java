@@ -1,5 +1,6 @@
 package com.drogstore.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.drogstore.service.UsuarioService;
@@ -36,7 +37,6 @@ public class UsuarioController {
 		model.addObject("usuarioobj", new Usuario());
 		service.inserir(usuario);
 
-		service.listarUsuarios(usuario);
 		return model;
 	}
 	
@@ -48,17 +48,20 @@ public class UsuarioController {
 		return modelAndView;
 	}
 
-	@GetMapping("/editarusuario/{idusuario}")
-	public ModelAndView editar(@PathVariable("idusuario") Long idusuario) {
-		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
-		Optional<Usuario> usuario = service.ListaPorId(idusuario);
 
-		modelAndView.addObject("usuarioobj", usuario.get());
-		Iterable<Usuario> usuariosIt = service.listarTodos(); // ao clicar em editar aqui devolver toda a lista
 
-		modelAndView.addObject("usuarios", usuariosIt);
-		return modelAndView;
-	}
+
+//	@GetMapping("/editarusuario/{idusuario}")
+//	public ModelAndView editar(@PathVariable("idusuario") Long idusuario) {
+//		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_usuario");
+//		List<Usuario> usuario = service.ListaPorId(idusuario);
+//
+//		modelAndView.addObject("usuarioobj", usuario);
+//		Iterable<Usuario> usuariosIt = service.listarTodos(); // ao clicar em editar aqui devolver toda a lista
+//
+//		modelAndView.addObject("usuarios", usuariosIt);
+//		return modelAndView;
+//	}
 	
 	@DeleteMapping("/removeusuario/{idusuario}")
 	public ModelAndView delete(@PathVariable("idusuario") Long idusuario) {

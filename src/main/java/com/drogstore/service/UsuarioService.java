@@ -23,10 +23,10 @@ public class UsuarioService {
         return repository.save(obj);
     }
 
-    public List<Usuario> ListaPorId(Long id){
-        List<Usuario> obj ;
-        return obj;
-    }
+//    public List<Usuario> ListaPorId(Long id){
+//        List<Usuario> obj = repository.listarPorId(id);
+//        return obj;
+//    }
 
     public void deletarPorId(long id){
         repository.deleteById(id);

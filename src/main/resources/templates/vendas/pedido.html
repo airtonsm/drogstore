@@ -17,54 +17,27 @@
 
 <h1>Balcao de Vendas</h1>
 
-        <label> Vendedor: </label>
-        <br/><br/>
-        <label> Cliente: </label>
+    <form action="pesquisarPessoa" method="get">
+        <h5>Pesquisar cliente</h5>
+        <input name="nomepesquisa" id="nomepesquisa">
+        <input type="submit" value="Pesquisar">
+    </form>
 
-<br/><br/>
-
-<form action="pesquisarProduto" method="get" id="pesquisarMed">
-    <label for="medPesquisa">Pesquisar Medicamento</label>
-
-    <input name="medPesquisa" id="medPesquisa" />
-    <input type="submit" value="pesquisar" />
-
-</form>
-
-<h2>Resultado</h2>
-<table>
-    <thead>
-    <th>Codigo</th>
-    <th>Descrição</th>
-    <th>Valor uni.</th>
-    <th>Quantidade</th>
-    </thead>
-
-    <tr th:each="produto : ${produtos}">
-        <td id="id" th:text="${produto.id}"></td>
-        <td id="nome" th:text="${produto.nome}"></td>
-        <td id="preco" th:text="${produto.preco}"></td>
-        <td><a th:href="@{/addproduto/{idproduto}(idproduto=${produto.id})}">Adicionar</a></button></td>
-    <td>
-</table>
-
-
-
-<br/><br/>
-<table>
-    <thead>
-    <th>Codigo</th>
-    <th>Descrição</th>
-    <th>Valor uni.</th>
-    <th>Quantidade</th>
-    </thead>
-
-    <tr th:each="produtos : ${produtosLista}">
-        <td th:text="${produtos.id}"></td>
-        <td th:text="${}"></td>
-        <td th:text="${}"></td>
-        <td>
-</table>
+<br/>
+<br/>
+    <table class="striped">
+        <thead>
+            <tr>
+                <td>Id:</td>
+                <td>Nome:</td>
+            </tr>
+        </thead>
+        <tr th:each="cliente : ${clientesLista}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td><a href="vendas">Realizar Venda</a></td>
+        </tr>
+    </table>
 
 </body>
 </html>

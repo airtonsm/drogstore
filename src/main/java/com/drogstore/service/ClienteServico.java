@@ -5,6 +5,9 @@ import com.drogstore.entidades.Usuario;
 import com.drogstore.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,4 +29,12 @@ public class ClienteServico {
     public void deletarPorId(long id){
         repository.deleteById(id);
     }
+
+    public List<Cliente> listarPorNome(String nome){
+        List<Cliente> usuarios = repository.listarPorNome(nome);
+        return usuarios;
+
+    }
+
+
 }
