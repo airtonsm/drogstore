@@ -26,6 +26,10 @@ public class ClienteServico {
         return repository.save(obj);
     }
 
+    public Optional<Cliente> listarPorId(Long id){
+        return repository.findById(id);
+    }
+
     public void deletarPorId(long id){
         repository.deleteById(id);
     }

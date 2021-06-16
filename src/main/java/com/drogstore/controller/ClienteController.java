@@ -23,7 +23,7 @@ public class ClienteController {
 
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "**/salvarcliente")
+    @PostMapping(value = "**/salvarcliente")
     public ModelAndView salvar(Cliente cliente){
 
         ModelAndView model = new ModelAndView("cadastro/cadastro_cliente");

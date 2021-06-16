@@ -17,6 +17,20 @@
 
 <h1>Balcao de Vendas</h1>
 
+
+    <form  action="salvarPedido" method="post" th:object="${clienteobj}">
+
+        <label for="nome" class="active">nome cliente</label>
+        <input name="nome"  id="nome" th:field="*{nome}">
+
+        <input type="submit" value="Realizar vendas">
+
+    </form>
+
+<br/>
+<br/>
+<br/>
+
     <form action="pesquisarPessoa" method="get">
         <h5>Pesquisar cliente</h5>
         <input name="nomepesquisa" id="nomepesquisa">
@@ -25,6 +39,8 @@
 
 <br/>
 <br/>
+
+
     <table class="striped">
         <thead>
             <tr>
@@ -33,9 +49,9 @@
             </tr>
         </thead>
         <tr th:each="cliente : ${clientesLista}">
-            <td th:text="${cliente.id}"></td>
+           <td th:id="cliente" th:text="${cliente.id}"></td>
             <td th:text="${cliente.nome}"></td>
-            <td><a href="vendas">Realizar Venda</a></td>
+            <td><a th:href="@{/addCliente/{idcliente}(idcliente=${cliente.id})}">adicionar</a></td>
         </tr>
     </table>
 
